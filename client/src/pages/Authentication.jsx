@@ -21,10 +21,14 @@ const Right=styled.div`
 }
 `;
 
+const Logo
+
 const Authentication = () => {
   return (
     <Container>
-      <Left></Left>
+      <Left>
+
+      </Left>
       <Right></Right>
     </Container>
   )
