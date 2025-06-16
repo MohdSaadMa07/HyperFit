@@ -1,55 +1,94 @@
-import React from 'react';
-import styled from 'styled-components';
-import logoImage from "../utils/Images/logo.jpg";
+import React, { useState } from "react";
+import styled from "styled-components";
+import LogoImage from "../utils/Images/logo.jpg";
 import AuthImage from "../utils/Images/AuthImage.jpg";
+import Signin from "../components/Signin";
+import Signup from "../components/Signup";
 
 const Container = styled.div`
   flex: 1;
-  height: 100vh;
+  height: 100%;
   display: flex;
   background: ${({ theme }) => theme.bg};
+  @media (max-width: 700px) {
+    flex-direction: column;
+  }
 `;
-
 const Left = styled.div`
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: black;
+  position: relative;
+  background-color: white;
   @media (max-width: 700px) {
     display: none;
   }
 `;
+const Logo = styled.img`
+  position: absolute;
+  width: 70px;
+  top: 40px;
+  left: 60px;
+  z-index: 10;
+`;
+const Image = styled.img`
+  position: relative;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+`;
 
 const Right = styled.div`
   flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
 `;
 
-const Logo = styled.img`
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  top: 40px;
-  left: 40px;
-  z-
-  `;
-
-const Image = styled.img`
-  width: 80%;
-  max-width: 400px;
-  height: auto;
+const Text = styled.div`
+  font-size: 16px;
+  text-align: center;
+  color: ${({ theme }) => theme.text_secondary};
+  margin-top: 16px;
+  @media (max-width: 400px) {
+    font-size: 14px;
+  }
+`;
+const TextButton = styled.span`
+  color: ${({ theme }) => theme.primary};
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
 `;
 
 const Authentication = () => {
+  const [login, setLogin] = useState(false);
   return (
     <Container>
       <Left>
-        <Logo src={logoImage} alt="Logo" />
-        <Image src={AuthImage} alt="Authentication Visual" />
+        <Logo src={LogoImage} />
+        <Image src={AuthImage} />
       </Left>
       <Right>
-        
+        {!login ? (
+          <>
+            <Signin />
+            <Text>
+              Don't have an account?{" "}
+              <TextButton onClick={() => setLogin(true)}>SignUp</TextButton>
+            </Text>
+          </>
+        ) : (
+          <>
+            <Signup />
+            <Text>
+              Already have an account?{" "}
+              <TextButton onClick={() => setLogin(false)}>SignIn</TextButton>
+            </Text>
+          </>
+        )}
       </Right>
     </Container>
   );
