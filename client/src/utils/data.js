@@ -1,28 +1,26 @@
-export const lightTheme = {
-  bg: "#FFFFFF",
-  bgLight: "#FFFFFF",
-  primary: "#007AFF",
-  secondary: "#5B86E5",
+export const counts = [
+  { id: 1, title: "Calories Burnt", value: 2450, unit: "kcal" },
+  { id: 2, title: "Workouts Completed", value: 18, unit: "sessions" },
+  { id: 3, title: "Total Hours", value: 12.5, unit: "hrs" },
+  { id: 4, title: "Steps Walked", value: 43000, unit: "steps" },
+];
 
-  disabled: "#b1b2b3",
-  menubar: "#191c29",
-  navbar: "#242B3F",
-  arrow: "#AFAFB5",
-  menu_primary_text: "#F2F3F4",
-  menu_secondary_text: "#b1b2b3",
-  table_header: "#242445",
-  text_primary: "#404040",
-  text_secondary: "#4d4c4c",
-  card: "#FFFFFF",
-  black: "#000000",
-  white: "#FFFFFF",
-  shadow: "#00000020",
-  green: "#00ff6a",
-  yellow: "#e8ba00",
-  red: "#ef5350",
-  orange: "#F7AD63",
-  popup: "#242B3F",
-  popup_text_primary: "#F2F3F4",
-  popup_text_secondary: "#b1b2b3",
-  output_node: "#49516b",
+export const weeklyStatsData = {
+  totalWeeksCaloriesBurnt: {
+    weeks: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    caloriesBurned: [450, 520, 610, 400, 700, 800, 650],
+  },
+};
+
+export const activityPieData = [
+  { name: "Cardio", value: 40 },
+  { name: "Strength", value: 25 },
+  { name: "Yoga", value: 15 },
+  { name: "HIIT", value: 10 },
+  { name: "Stretching", value: 10 },
+];
+
+export const heartRateData = {
+  time: ["6AM", "9AM", "12PM", "3PM", "6PM", "9PM"],
+  heartRate: [72, 88, 95, 78, 85, 70],
 };

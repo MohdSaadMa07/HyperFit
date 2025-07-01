@@ -2,7 +2,7 @@ import { CircularProgress } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
 
-const Button = styled.div`
+const StyledButton = styled.div`
   border-radius: 10px;
   color: white;
   font-size: 14px;
@@ -23,51 +23,55 @@ const Button = styled.div`
   ${({ type, theme }) =>
     type === "secondary"
       ? `
-  background: ${theme.secondary};
-border: 1px solid ${({ theme }) => theme.secondary};
-  `
+        background: ${theme.secondary};
+        border: 1px solid ${theme.secondary};
+      `
       : `
-  background: ${theme.primary};
-`}
+        background: ${theme.primary};
+      `}
 
-  ${({ isDisabled }) =>
-    isDisabled &&
+  ${({ $isDisabled }) =>
+    $isDisabled &&
     `
-  opacity: 0.8;
-  cursor: not-allowed;
+      opacity: 0.8;
+      cursor: not-allowed;
+    `}
 
-  `}
-  ${({ isLoading }) =>
-    isLoading &&
+  ${({ $isLoading }) =>
+    $isLoading &&
     `
-    opacity: 0.8;
-  cursor: not-allowed;
-`}
-${({ flex }) =>
-    flex &&
-    `
-    flex: 1;
-`}
+      opacity: 0.8;
+      cursor: not-allowed;
+    `}
 
-${({ small }) =>
-    small &&
+  ${({ $flex }) =>
+    $flex &&
     `
-padding: 10px 28px;
-`}
-  ${({ outlined, theme }) =>
-    outlined &&
+      flex: 1;
+    `}
+
+  ${({ $small }) =>
+    $small &&
     `
-background: transparent;
-color: ${theme.primary};
-  box-shadow: none;
-`}
-  ${({ full }) =>
-    full &&
+      padding: 10px 28px;
+    `}
+
+  ${({ $outlined, theme }) =>
+    $outlined &&
     `
-  width: 100%;`}
+      background: transparent;
+      color: ${theme.primary};
+      box-shadow: none;
+    `}
+
+  ${({ $full }) =>
+    $full &&
+    `
+      width: 100%;
+    `}
 `;
 
-const button = ({
+const Button = ({
   text,
   isLoading,
   isDisabled,
@@ -81,15 +85,15 @@ const button = ({
   full,
 }) => {
   return (
-    <Button
+    <StyledButton
       onClick={() => !isDisabled && !isLoading && onClick()}
-      isDisabled={isDisabled}
       type={type}
-      isLoading={isLoading}
-      flex={flex}
-      small={small}
-      outlined={outlined}
-      full={full}
+      $isDisabled={isDisabled}
+      $isLoading={isLoading}
+      $flex={flex}
+      $small={small}
+      $outlined={outlined}
+      $full={full}
     >
       {isLoading && (
         <CircularProgress
@@ -100,8 +104,8 @@ const button = ({
       {text}
       {isLoading && <> . . .</>}
       {rightIcon}
-    </Button>
+    </StyledButton>
   );
 };
 
-export default button;
+export default Button;

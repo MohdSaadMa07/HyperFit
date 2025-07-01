@@ -1,25 +1,42 @@
-import React from "react";
-import styled, { ThemeProvider } from "styled-components";
-import { lightTheme } from "./utils/Themes"; // Make sure this path is correct
-import { BrowserRouter } from "react-router-dom";
+import { ThemeProvider, styled } from "styled-components";
+import { lightTheme } from "./utils/Themes";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Authentication from "./pages/Authentication";
+import { useSelector } from "react-redux";
+import Navbar from "./components/Navbar";
+import Dashboard from "./pages/Dashboard";
+import Workouts from "./pages/Workouts";
 
 const Container = styled.div`
-  background-color: ${(props) => props.theme.background};
-  color: ${(props) => props.theme.text};
+  width: 100%;
   height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  background: ${({ theme }) => theme.bg};
+  color: ${({ theme }) => theme.text_primary};
+  overflow-x: hidden;
+  overflow-y: hidden;
+  transition: all 0.2s ease;
 `;
 
 function App() {
+  const { currentUser } = useSelector((state) => state.user);
   return (
     <ThemeProvider theme={lightTheme}>
       <BrowserRouter>
-        <Container>
-            <Authentication/> 
-        </Container>
+        {currentUser ? (
+          <Container>
+            <Navbar currentUser={currentUser} />
+            <Routes>
+              <Route path="/" exact element={<Dashboard />} />
+              <Route path="/workouts" exact element={<Workouts />} />
+            </Routes>
+          </Container>
+        ) : (
+          <Container>
+            <Authentication />
+          </Container>
+        )}
       </BrowserRouter>
     </ThemeProvider>
   );

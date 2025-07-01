@@ -12,26 +12,30 @@ const Container = styled.div`
   background: ${({ theme }) => theme.bg};
   @media (max-width: 700px) {
     flex-direction: column;
+  overflow: hidden;
   }
 `;
 const Left = styled.div`
   flex: 1;
   position: relative;
-  background-color: white;
+  max-height: 100vh;
   @media (max-width: 700px) {
     display: none;
+  margin-top: 0;
+  overflow: hidden;
   }
 `;
 const Logo = styled.img`
   position: absolute;
-  width: 70px;
+  width: 110px;
+  height: 110px;
   top: 40px;
   left: 60px;
   z-index: 10;
 `;
 const Image = styled.img`
   position: relative;
-  height: 100%;
+  height: 100vh;
   width: 100%;
   object-fit: cover;
 `;
@@ -39,21 +43,26 @@ const Image = styled.img`
 const Right = styled.div`
   flex: 1;
   position: relative;
+  max-height: 100vh;
   display: flex;
+  overflow: hidden;
+  margin-top: 70px;
+  
   flex-direction: column;
-  padding: 40px;
-  gap: 16px;
+  ;
   align-items: center;
   justify-content: center;
 `;
 
 const Text = styled.div`
   font-size: 16px;
+  color: red;
   text-align: center;
   color: ${({ theme }) => theme.text_secondary};
   margin-top: 16px;
   @media (max-width: 400px) {
     font-size: 14px;
+  height: 25vh;
   }
 `;
 const TextButton = styled.span`
@@ -61,6 +70,8 @@ const TextButton = styled.span`
   cursor: pointer;
   transition: all 0.3s ease;
   font-weight: 600;
+  top-margin: 10px;
+  
 `;
 
 const Authentication = () => {
